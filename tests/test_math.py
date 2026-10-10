@@ -35,7 +35,12 @@ def test_performance():
     import time
     time.sleep(10)
     assert True 
-    
+
 @pytest.mark.skip(reason="Тест устарел и требует переработки")
 def test_old_functionality():
     assert False  # Этот тест не будет выполняться 
+
+@pytest.mark.xfail(reason="Баг в API, исправят в версии 2.5")
+def test_broken_feature():
+    assert add_sum(2, 3) == 6, 'сумма не равна ожидаемой'  # Сейчас падает
+
